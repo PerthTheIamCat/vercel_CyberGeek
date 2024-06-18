@@ -35,7 +35,7 @@ const ShowStatus = ({ prop }: { prop: LIST[] }) => {
           <tbody className="font-kanit">
             {prop.map((element, index) => (
               <tr key={index}>
-                <th>formatThaiDateTime(element.built)</th>
+                <th>{formatThaiDateTime(element.built)}</th>
                 <td><Link target="_blank" href={element.document}>คลิกเพื่อดูไฟล์</Link></td>
                 <td className="flex md:grid md:grid-cols-2">
                   {element.status}
