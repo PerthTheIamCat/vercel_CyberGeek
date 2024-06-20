@@ -115,12 +115,13 @@ const Settingpage: React.FC = () => {
                 })
         } catch (error) {
             console.log(error)
+        } finally {
+            setIsLoading(false);
         }
-        setIsLoading(false);
     };
 
     return (
-        <form onSubmit={handleSubmit} className=' bg-black h-fit  grid md:grid-cols-[30%_70%] mb-5 md:mb-0'>
+        <form onSubmit={handleSubmit} className=' bg-black h-fit  grid md:grid-cols-[30%_70%] mb-5 md:mb-0 min-h-screen'>
             <title>Setting | CyberGeek</title>
             <div className='font-kanit ml-[20%] border border-black border-r-white/15 '>
                 <div className=' mt-14'>
@@ -247,7 +248,7 @@ const Settingpage: React.FC = () => {
                             </div>
                         )}
                         <div className='mt-3'>
-                            <button type="submit" className='bg-green-800 text-sm rounded-md px-4 py-2'>
+                            <button type="submit" className='bg-green-800 text-sm rounded-md px-4 py-2' disabled={isLoading} >
                                 {isLoading ? <div>Changing&nbsp;<span className="loading loading-spinner loading-xs text-white/25"></span></div> : "Save Change"}
                             </button>
                         </div>

@@ -2,7 +2,9 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { signIn } from 'next-auth/react';
+import { TbWashDryP } from "react-icons/tb";
+import axios from 'axios'
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 
@@ -45,11 +47,18 @@ export default function SignIn() {
         console.log(result?.error);
         return false;
       }
-      router.push("/pendingpage");
+      const role = await axios.post("/api/user/getrolebyemail",{email:email})
+      if(role.data.data.role === "CERTIFIED"){
+        router.push('/')
+      }else{
+        router.push('/pendingpage')
+      }
     } catch (error) {
       console.log("error", error);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
+    
   };
   return (
     <div className="flex justify-center md:h-screen h-fit my-10">
